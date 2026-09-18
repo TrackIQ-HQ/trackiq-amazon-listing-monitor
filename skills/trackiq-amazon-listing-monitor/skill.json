@@ -1,22 +1,37 @@
 {
   "name": "trackiq-amazon-listing-monitor",
   "title": "TrackIQ: Amazon Listing Monitor",
+  "category": "listing",
   "version": "1.0.0",
   "updated": "2026-09-18",
-  "summary": "Watches a brand's listings daily and alerts only when something actually moved — a rewritten title or bullet, a lost image, a missing A+ description, a category move, a new seller in the buy box, price or rating past a threshold, or a listing that has stopped being purchasable. Each finding carries the revenue behind that ASIN. Silence is the normal output.",
+  "summary": "Watches a brand's listings daily and alerts only when something actually moved \u2014 a rewritten title or bullet, a lost image, a missing A+ description, a category move, a new seller in the buy box, price or rating past a threshold, or a listing that has stopped being purchasable. Each finding carries the revenue behind that ASIN. Silence is the normal output.",
   "changelog": "First public release.",
   "requires": {
-    "mcp": ["trackiq"],
-    "tools": ["list_marketplaces", "get_product_performance", "get_bsr"],
+    "mcp": [
+      "trackiq"
+    ],
+    "tools": [
+      "list_marketplaces",
+      "get_product_performance",
+      "get_bsr"
+    ],
     "filesystem": true,
     "network": true,
-    "third_party_apis": ["oxylabs"],
-    "third_party_note": "Requires an Oxylabs scraper connection for listing state: 1 credit per watched ASIN per run. Listing state has to be observed from the public page — first-party data will not show a title rewrite. Also needs somewhere to keep dated snapshots between runs; without yesterday's snapshot there is nothing to diff."
+    "third_party_apis": [
+      "oxylabs"
+    ],
+    "third_party_note": "Requires an Oxylabs scraper connection for listing state: 1 credit per watched ASIN per run. Listing state has to be observed from the public page \u2014 first-party data will not show a title rewrite. Also needs somewhere to keep dated snapshots between runs; without yesterday's snapshot there is nothing to diff."
   },
   "delivery": {
-    "methods": ["in-chat", "file", "slack", "n8n", "email"],
+    "methods": [
+      "in-chat",
+      "file",
+      "slack",
+      "n8n",
+      "email"
+    ],
     "default": "in-chat",
-    "note": "Silence is the normal output — only sends when something moved. in-chat always works and is the fallback. Outward sends confirm first."
+    "note": "Silence is the normal output \u2014 only sends when something moved. in-chat always works and is the fallback. Outward sends confirm first."
   },
   "fallback": "None. Without the scraper it cannot observe listing state, and without stored snapshots it can take a baseline and nothing more. The skill says so rather than pretending to monitor.",
   "homepage": "https://trackiq.com/skills/trackiq-amazon-listing-monitor",
