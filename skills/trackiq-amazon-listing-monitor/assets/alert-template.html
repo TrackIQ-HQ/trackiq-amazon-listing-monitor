@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{CLIENT}} — listing changes {{DATE}}</title>
+</head>
+<!--
+  TrackIQ listing-change alert. Exception-only: if nothing alerted, this email
+  is not sent at all.
+
+  Replace every {{TOKEN}}. Repeat the ASIN BLOCK per alerting ASIN, ordered by
+  revenue at risk. Repeat the CHANGE ROW per finding within an ASIN.
+  data-sev is "alert" or "watch" and must match the summary counts.
+
+  Email rules: table-based, inline styles only, 600px, system fonts, no
+  external CSS and no web fonts. Logos are absolute https URLs, never
+  base64 — several clients strip data URIs.
+-->
+<body style="margin:0;padding:0;background:#F3F1EA;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F3F1EA;">
+<tr><td align="center" style="padding:24px 12px;">
+
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#FDFBFA;border-radius:12px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+
+  <!-- ============ header ============ -->
+  <tr><td style="background:#17533F;padding:28px 32px;">
+    <img src="{{LOGO_WHITE_URL}}" width="150" alt="TrackIQ" style="display:block;border:0;margin-bottom:22px;">
+    <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#C4A574;font-weight:700;">Listing changes</div>
+    <div style="font-size:26px;color:#FDFBFA;font-weight:600;padding-top:6px;">{{CLIENT}}</div>
+    <div style="font-size:14px;color:#E7EDE2;padding-top:6px;">{{DATE}} &middot; {{N_ALERT}} to act on, {{N_WATCH}} to note</div>
+  </td></tr>
+
+  <!-- ============ run summary — always present ============ -->
+  <tr><td style="padding:18px 32px;background:#F1F5EF;border-bottom:1px solid #E6E1D8;">
+    <div style="font-size:13px;color:#586258;line-height:1.5;">
+      {{N_CHECKED}} ASINs checked &middot; {{N_CACHED}} returned cached data and were not checked
+      &middot; {{N_FAILED}} could not be fetched &middot; {{CREDITS}} credits
+    </div>
+  </td></tr>
+
+  <!-- ============ ASIN BLOCK — repeat per alerting ASIN ============ -->
+  <tr><td style="padding:26px 32px 8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td style="font-size:17px;font-weight:600;color:#1F2420;line-height:1.35;">{{ASIN_TITLE}}</td>
+      </tr>
+      <tr>
+        <td style="font-size:13px;color:#8B8F86;padding-top:4px;">
+          <a href="https://amazon.com/dp/{{ASIN}}" style="color:#17533F;text-decoration:none;">{{ASIN}}</a>
+          &middot; {{ASIN_REVENUE}}/mo &middot; {{ASIN_UNITS}} units
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- ---- CHANGE ROW — alert. Repeat per finding. ---- -->
+  <tr><td style="padding:0 32px 12px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" data-sev="alert"
+           style="border-left:4px solid #C65345;background:#FFF3F1;border-radius:0 8px 8px 0;">
+      <tr><td style="padding:14px 16px;">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B84636;font-weight:700;">{{CHANGE_LABEL}}</div>
+        <div style="font-size:14px;color:#1F2420;line-height:1.55;padding-top:8px;">
+          <span style="text-decoration:line-through;color:#8B8F86;">{{OLD_VALUE}}</span>
+        </div>
+        <div style="font-size:14px;color:#1F2420;line-height:1.55;padding-top:5px;">
+          <span style="background:#EEF7F1;padding:1px 3px;">{{NEW_VALUE}}</span>
+        </div>
+        <div style="font-size:12px;color:#586258;padding-top:8px;">{{CHANGE_NOTE}}</div>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ---- CHANGE ROW — watch ---- -->
+  <tr><td style="padding:0 32px 12px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" data-sev="watch"
+           style="border-left:4px solid #D89B35;background:#FFF7E6;border-radius:0 8px 8px 0;">
+      <tr><td style="padding:14px 16px;">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6220;font-weight:700;">{{CHANGE_LABEL}}</div>
+        <div style="font-size:14px;color:#1F2420;line-height:1.55;padding-top:8px;">
+          <span style="text-decoration:line-through;color:#8B8F86;">{{OLD_VALUE}}</span>
+          &nbsp;&rarr;&nbsp;<strong>{{NEW_VALUE}}</strong>
+        </div>
+        <div style="font-size:12px;color:#586258;padding-top:8px;">{{CHANGE_NOTE}}</div>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ---- impact strip — one per ASIN, never a causal claim ---- -->
+  <tr><td style="padding:0 32px 22px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="border:1px solid #E6E1D8;border-radius:8px;">
+      <tr><td style="padding:12px 16px;font-size:13px;color:#586258;line-height:1.55;">
+        <strong style="color:#1F2420;">Around the change:</strong> {{IMPACT_SENTENCE}}
+      </td></tr>
+    </table>
+  </td></tr>
+  <!-- ============ end ASIN BLOCK ============ -->
+
+  <!-- ============ could not be checked — omit if none ============ -->
+  <tr><td style="padding:4px 32px 22px;">
+    <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#778867;font-weight:700;padding-bottom:8px;">Could not be checked</div>
+    <div style="font-size:13px;color:#586258;line-height:1.6;">{{UNCHECKED_LIST}}</div>
+  </td></tr>
+
+  <!-- ============ footer ============ -->
+  <tr><td style="background:#F7F5EF;padding:18px 32px;border-top:1px solid #E6E1D8;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td><img src="{{LOGO_BUG_URL}}" width="26" alt="TrackIQ" style="display:block;border:0;"></td>
+      <td align="right" style="font-size:11px;color:#8B8F86;">
+        Snapshots archived {{SNAPSHOT_PATH}} &middot; {{DATE}}
+      </td>
+    </tr></table>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

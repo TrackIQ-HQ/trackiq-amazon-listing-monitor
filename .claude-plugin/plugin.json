@@ -1,0 +1,10 @@
+{
+  "name": "trackiq-amazon-listing-monitor",
+  "version": "1.0.0",
+  "description": "TrackIQ: Amazon Listing Monitor — an Agent Skill that watches listings daily and alerts only when something actually moved, with the revenue behind each finding. Requires an Oxylabs scraper connection and snapshot storage.",
+  "author": { "name": "TrackIQ", "url": "https://trackiq.com" },
+  "homepage": "https://trackiq.com/skills/trackiq-amazon-listing-monitor",
+  "repository": "https://github.com/TrackIQ-HQ/trackiq-amazon-listing-monitor",
+  "license": "MIT",
+  "keywords": ["amazon", "amazon-seller", "listing-monitoring", "suppression", "buy-box", "hijacker", "change-detection", "seller-support", "claude-skill", "agent-skills", "trackiq"]
+}
