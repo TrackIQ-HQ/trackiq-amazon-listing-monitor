@@ -29,6 +29,8 @@ A 50-ASIN watchlist is 50 credits a day.
 
 ## Powered by the TrackIQ MCP
 
+[![TrackIQ MCP — connect your AI assistant to Amazon data. 16 tools, full MCP access, $69/mo. Works with Claude, ChatGPT and Cursor.](.github/trackiq-mcp-banner.png)](https://trackiq.com/mcp)
+
 The revenue weighting comes from your live Amazon account through the
 **[TrackIQ MCP](https://trackiq.com/mcp)** — 16 tools connecting your AI
 assistant to Amazon data. **[Get access →](https://trackiq.com/mcp)**
