@@ -2,8 +2,8 @@
   "name": "trackiq-amazon-listing-monitor",
   "title": "TrackIQ: Amazon Listing Monitor",
   "category": "listing",
-  "version": "1.0.0",
-  "updated": "2026-09-18",
+  "version": "1.0.1",
+  "updated": "2026-10-06",
   "summary": "Watches a brand's listings daily and alerts only when something actually moved \u2014 a rewritten title or bullet, a lost image, a missing A+ description, a category move, a new seller in the buy box, price or rating past a threshold, or a listing that has stopped being purchasable. Each finding carries the revenue behind that ASIN. Silence is the normal output.",
   "changelog": "First public release.",
   "requires": {
